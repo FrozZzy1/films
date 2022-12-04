@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Movie(models.Model):
-    LIST_OF_RATING_MPAA  = (
+    LIST_OF_RATING_MPAA = (
         ('G', 'G'),
         ('PG', 'PG'),
         ('PG-13', 'PG_13'),
