@@ -1,13 +1,9 @@
 from rest_framework import serializers
-from users.models import User
+from users.models import UserProfile
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True)
     class Meta:
-        model = User
-        fields = (
-            'id',
-            'username',
-            'email',
-            'avatar',
-        )
+        model = UserProfile
+        fields = '__all__'

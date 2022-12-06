@@ -7,11 +7,13 @@ from pilkit.processors import ResizeToFill
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email, password):
         if not username:
             raise TypeError('Users must have a username')
         if not email:
             raise TypeError('Users must have an email address')
+        if not password:
+            raise TypeError('Users must have a password')
 
         user = self.model(username=username,
                           email=self.normalize_email(email))
@@ -21,9 +23,6 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, email, password):
-        if password is None:
-            raise TypeError('Superusers must have a password')
-
         user = self.create_user(username, email, password)
         user.is_superuser = True
         user.is_staff = True
@@ -32,9 +31,9 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField('Имя пользователя', max_length=12)
-    email = models.CharField('Почта пользователя', max_length=100, unique=True, db_index=True)
+class UserProfile(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField('username', max_length=20, unique=True)
+    email = models.CharField('email', max_length=100, unique=True, db_index=True)
     avatar = ProcessedImageField(
         format='PNG',
         processors=[

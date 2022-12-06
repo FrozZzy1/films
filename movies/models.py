@@ -22,3 +22,5 @@ class Movie(models.Model):
     age = models.PositiveIntegerField(default=0)
     rating_mpaa = models.CharField(max_length=5, choices=LIST_OF_RATING_MPAA)
 
+    def __str__(self):
+        return self.title

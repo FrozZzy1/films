@@ -1,17 +1,21 @@
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.vk.views import VKOAuth2Adapter
-from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
-
-from dj_rest_auth.registration.views import SocialLoginView
-
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
+from .models import UserProfile
+from .serializer import UserProfileSerializer
+from .license import IsOwnerProfileOrReadOnly
 
 
-class VKLogin(SocialLoginView):
-    adapter_class = VKOAuth2Adapter
+class UserProfileListCreateAPIView(ListCreateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
 
 
-class FacebookLogin(SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
+class UserProfileDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsOwnerProfileOrReadOnly, IsAuthenticated]

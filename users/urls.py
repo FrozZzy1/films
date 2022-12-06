@@ -1,11 +1,10 @@
 from django.urls import path
-from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.routers import DefaultRouter
 
-from users.views import GoogleLogin, VKLogin, FacebookLogin
+from .views import UserProfileListCreateAPIView, UserProfileDetailAPIView
+
 
 urlpatterns = [
-    path('token-create/', TokenObtainPairView.as_view()),
-    path('oauth/google/', GoogleLogin.as_view(), name='google_login'),
-    path('oauth/vk/', VKLogin.as_view(), name='vk_login'),
-    path('oauth/facebook/', FacebookLogin.as_view(), name='facebook_login'),
+    path('all-users', UserProfileListCreateAPIView.as_view(), name='all-users'),
+    path('user/<int:pk>', UserProfileDetailAPIView.as_view(), name='user'),
 ]

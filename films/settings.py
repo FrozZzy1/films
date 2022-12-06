@@ -45,15 +45,9 @@ INSTALLED_APPS = [
 
     # 3rd apps
     'rest_framework',
+    'rest_framework_simplejwt',
     'rest_framework.authtoken',
     'dj_rest_auth',
-    'allauth',
-    'allauth.account',
-    'dj_rest_auth.registration',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.vk',
-    'allauth.socialaccount.providers.facebook',
     'django_filters',
     
 
@@ -108,10 +102,11 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.UserProfile'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -160,6 +155,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
+
     ),
 }
 
