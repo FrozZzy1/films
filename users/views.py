@@ -2,7 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.permissions import IsAuthenticated
 from .models import UserProfile
 from .serializer import UserProfileSerializer
-from .license import IsOwnerProfileOrReadOnly
+from .permissions import IsOwnerProfileOrReadOnly
 
 
 class UserProfileListCreateAPIView(ListCreateAPIView):
