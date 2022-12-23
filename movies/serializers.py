@@ -1,9 +1,28 @@
 from rest_framework import serializers
 
-from movies.models import Movie, Rating
+from movies.models import Movie, Genre, Country
+
+
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ['id',
+                  'title',
+                  ]
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ['id',
+                  'title',
+                  ]
 
 
 class MovieSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True)
+    countries = CountrySerializer(many=True)
+
     class Meta:
         model = Movie
         fields = ['id',
@@ -11,14 +30,15 @@ class MovieSerializer(serializers.ModelSerializer):
                   'description',
                   'subtitles',
                   'year',
-                  'country',
-                  'genre',
+                  'countries',
+                  'genres',
                   'fees_us',
                   'fees_world',
                   'image',
                   'age',
                   'rating_mpaa',
                   ]
+
 
 class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,26 +48,12 @@ class MovieDetailSerializer(serializers.ModelSerializer):
                   'description',
                   'subtitles',
                   'year',
-                  'country',
-                  'genre',
+                  'countries',
+                  'genres',
                   'fees_us',
                   'fees_world',
                   'image',
                   ]
 
 
-class CreateRatingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Rating
-        fields = ['star',
-                  'movie'
-                  ]
 
-    def create(self, validated_data):
-        rating = Rating.objects.update_or_create(
-            ip=validated_data.get('ip', None),
-            movie=validated_data.get('movie', None),
-            defaults={'star': validated_data.get('star')}
-        )
-
-        return rating
