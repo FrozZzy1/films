@@ -67,15 +67,37 @@ class Composer(models.Model):
         verbose_name_plural = 'Composers'
 
 
-class Artist(models.Model):
+class Painter(models.Model):
     title = models.TextField()
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name = 'Artist'
-        verbose_name_plural = 'Artists'
+        verbose_name = 'Painter'
+        verbose_name_plural = 'Painters'
+
+
+class Starring(models.Model):
+    title = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Starring'
+        verbose_name_plural = 'Starring'
+
+
+class RolesDubbed(models.Model):
+    title = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Dubbing actor'
+        verbose_name_plural = 'Dubbing actors'
 
 
 class Movie(models.Model):
@@ -97,7 +119,9 @@ class Movie(models.Model):
     scripts = models.ManyToManyField(Script)
     producers = models.ManyToManyField(Producer)
     composers = models.ManyToManyField(Composer)
-    artists = models.ManyToManyField(Artist)
+    painters = models.ManyToManyField(Painter)
+    starring = models.ManyToManyField(Starring)
+    roles_dubbed = models.ManyToManyField(RolesDubbed)
     fees_us = models.PositiveIntegerField(default=0)
     fees_world = models.PositiveIntegerField(default=0)
     image = models.ImageField(upload_to='media', blank=True)

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from movies.models import Movie, Genre, Country, Script, Director, Producer, Composer, Artist
+from movies.models import Movie, Genre, Country, Script, Director, Producer, Composer, Painter, Starring, RolesDubbed
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -51,12 +51,28 @@ class ComposerSerializer(serializers.ModelSerializer):
                   ]
 
 
-class ArtistSerializer(serializers.ModelSerializer):
+class PainterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Artist
+        model = Painter
         fields = ['id',
                   'title',
                   ]
+
+
+class StarringSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Starring
+        fields = ['id',
+                  'title',
+                  ]
+
+
+class RolesDubbedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RolesDubbed
+        fields =['id',
+                 'title',
+                 ]
 
 
 class MovieSerializer(serializers.ModelSerializer):
@@ -66,7 +82,9 @@ class MovieSerializer(serializers.ModelSerializer):
     scripts = ScriptSerializer(many=True)
     producers = ProducerSerializer(many=True)
     composers = ComposerSerializer(many=True)
-    artists = ArtistSerializer(many=True)
+    painters = PainterSerializer(many=True)
+    starring = StarringSerializer(many=True)
+    roles_dubbed = RolesDubbedSerializer(many=True)
 
     class Meta:
         model = Movie
@@ -81,12 +99,14 @@ class MovieSerializer(serializers.ModelSerializer):
                   'scripts',
                   'producers',
                   'composers',
-                  'artists',
+                  'painters',
                   'fees_us',
                   'fees_world',
                   'image',
                   'age',
                   'rating_mpaa',
+                  'starring',
+                  'roles_dubbed',
                   ]
 
 
@@ -97,7 +117,9 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     scripts = ScriptSerializer(many=True)
     producers = ProducerSerializer(many=True)
     composers = ComposerSerializer(many=True)
-    artists = ArtistSerializer(many=True)
+    painters = PainterSerializer(many=True)
+    starring = StarringSerializer(many=True)
+    roles_dubbed = RolesDubbedSerializer(many=True)
 
     class Meta:
         model = Movie
@@ -112,10 +134,12 @@ class MovieDetailSerializer(serializers.ModelSerializer):
                   'scripts',
                   'producers',
                   'composers',
-                  'artists',
+                  'painters',
                   'fees_us',
                   'fees_world',
                   'image',
+                  'starring',
+                  'roles_dubbed',
                   ]
 
 
