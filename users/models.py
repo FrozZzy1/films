@@ -5,7 +5,7 @@ from django.db import models
 from imagekit.models import ProcessedImageField
 from pilkit.processors import ResizeToFill
 
-
+#создание/регистрация пользователя
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password):
         if not username:
