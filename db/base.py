@@ -7,5 +7,3 @@ metadata = MetaData()
 engine = create_engine(
     settings.DATABASE_URL,
 )
-
-# 'postgresql://admin:admin@localhost:5432/films'
