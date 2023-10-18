@@ -8,7 +8,7 @@ class UserModel(AbstractModel):
     username = Column(String, unique=True)
     password = Column(String)
     first_name = Column(String)
-    middle_name = Column(String)
+    middle_name = Column(String, null=True)
     last_name = Column(String)
     email = Column(String, unique=True)
     created_at = Column(DateTime, default=datetime.utcnow)
