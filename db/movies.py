@@ -1,6 +1,6 @@
 import enum
-from datetime import datetime
 
+from datetime import datetime
 from sqlalchemy import Column, String, Integer, ForeignKey, Float, Enum, DateTime
 
 from db.abstract import AbstractModel
