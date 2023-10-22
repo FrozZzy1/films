@@ -32,7 +32,7 @@ class MovieModel(AbstractModel):
     description = Column(String, nullable=False)
     photo = Column(String, nullable=False)
     photo_gallery = Column(String, nullable=True)
-    similar_movies = Column(String, nullable=True)
+    similar_movies = Column(Integer, ForeignKey('movies.id'), nullable=True)
     rating = Column(Float, default=0, nullable=True)
     rating_MPAA = Column(Enum(RatingMPAAEnum), nullable=False)
     comment_list = Column(Integer, ForeignKey('comments.id'), nullable=True)
