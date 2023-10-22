@@ -18,6 +18,7 @@ class Genre(AbstractModel):
     __tablename__ = 'genres'
 
     title = Column(String, unique=True, nullable=False)
+    description = Column(String, nullable=False)
 
 
 class MovieModel(AbstractModel):
