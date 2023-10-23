@@ -30,7 +30,7 @@ class UserIn(BaseModel):
     @field_validator('password2')
     @classmethod
     def validate_password(cls, value: str, values: FieldValidationInfo, **kwargs) -> str:
-        if value != values.data.get('password'):
+        if value != values.data.get('password1'):
             raise ValueError('passwords don`t match')
         if ' ' in value:
             raise ValueError('password must not contain any spaces')
