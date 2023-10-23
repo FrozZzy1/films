@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float
 
 from db.abstract import AbstractModel
 
@@ -9,6 +9,6 @@ class CommentModel(AbstractModel):
 
     creator = Column(Integer, ForeignKey('users.id'), nullable=False)
     text = Column(String, nullable=False)
-    rating = Column(Integer, nullable=False)
+    rating = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow())
     updated_at = Column(DateTime, default=datetime.utcnow())
