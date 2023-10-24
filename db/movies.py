@@ -28,7 +28,7 @@ class MovieModel(AbstractModel):
     year = Column(Integer, nullable=False)
     country = Column(String, nullable=False)
     genre_id = Column(Integer, ForeignKey('genres.id'), nullable=False)
-    actors_id = Column(Integer, ForeignKey('actors.id'))
+    actors_id = Column(Integer, ForeignKey('actors.id'), nullable=True)
     description = Column(String, nullable=False)
     photo = Column(String, nullable=False)
     photo_gallery = Column(String, nullable=True)
