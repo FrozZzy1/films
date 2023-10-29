@@ -1,19 +1,19 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, EmailStr, constr, field_validator
+from pydantic import BaseModel, EmailStr, constr, field_validator, Field
 from pydantic_core.core_schema import FieldValidationInfo
 from core.validation import password_pattern
 
 
 class User(BaseModel):
-    id: int
+    id: Optional[int] = None
     username: str
     password: str
     first_name: str
     middle_name: Optional[str]
     last_name: str
     email: EmailStr
-    is_admin: bool
+    is_admin: Optional[bool] = False
     created_at: datetime
     updated_at: datetime
 
