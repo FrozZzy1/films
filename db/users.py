@@ -1,10 +1,13 @@
 from datetime import datetime
-from sqlalchemy import Column, String, DateTime, Boolean
+from sqlalchemy import Column, String, DateTime, Boolean, Integer
 
-from db.abstract import AbstractModel
+from .base import Base
 
 
-class UserModel(AbstractModel):
+class UserModel(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
     username = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     first_name = Column(String, nullable=False)

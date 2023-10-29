@@ -1,10 +1,12 @@
 from datetime import datetime
-from sqlalchemy import Column, String, Date, DateTime
+from sqlalchemy import Column, String, Date, DateTime, Integer
+from .base import Base
 
-from db.abstract import AbstractModel
 
+class ActorModel(Base):
+    __tablename__ = 'actors'
 
-class ActorModel(AbstractModel):
+    id = Column(Integer, primary_key=True)
     full_name = Column(String, nullable=False)
     birthday = Column(Date, nullable=True)
     photo = Column(String, nullable=False)

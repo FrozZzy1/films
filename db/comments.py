@@ -1,12 +1,13 @@
 from datetime import datetime
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float
 
-from db.abstract import AbstractModel
+from .base import Base
 
 
-class CommentModel(AbstractModel):
+class CommentModel(Base):
     __tablename__ = 'comments'
 
+    id = Column(Integer, primary_key=True)
     creator = Column(Integer, ForeignKey('users.id'), nullable=False)
     text = Column(String, nullable=False)
     rating = Column(Float, nullable=False)

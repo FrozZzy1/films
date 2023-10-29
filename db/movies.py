@@ -3,7 +3,7 @@ import enum
 from datetime import datetime
 from sqlalchemy import Column, String, Integer, ForeignKey, Float, Enum, DateTime
 
-from db.abstract import AbstractModel
+from .base import Base
 
 
 class RatingMPAAEnum(enum.Enum):
@@ -14,16 +14,18 @@ class RatingMPAAEnum(enum.Enum):
     NC_17 = 'NC-17'
 
 
-class Genre(AbstractModel):
+class Genre(Base):
     __tablename__ = 'genres'
 
+    id = Column(Integer, primary_key=True)
     title = Column(String, unique=True, nullable=False)
     description = Column(String, nullable=False)
 
 
-class MovieModel(AbstractModel):
+class MovieModel(Base):
     __tablename__ = 'movies'
 
+    id = Column(Integer, primary_key=True)
     title = Column(String, unique=True, nullable=False)
     year = Column(Integer, nullable=False)
     country = Column(String, nullable=False)
