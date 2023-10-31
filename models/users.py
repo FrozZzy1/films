@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, EmailStr, constr, field_validator, Field
 from pydantic_core.core_schema import FieldValidationInfo
 from core.validation import password_pattern
+from db.movies import MovieModel
 
 
 class User(BaseModel):
@@ -10,10 +11,10 @@ class User(BaseModel):
     username: str
     password: str
     first_name: str
-    middle_name: Optional[str]
+    middle_name: Optional[str] = None
     last_name: str
     email: EmailStr
-    is_admin: Optional[bool] = False
+    is_admin: bool = False
     created_at: datetime
     updated_at: datetime
 
@@ -38,3 +39,14 @@ class UserIn(BaseModel):
             raise ValueError('password must contain at least one capital letter or one special character')
 
         return value
+
+
+class UserOut(BaseModel):
+    username: str
+    first_name: str
+    middle_name: Optional[str]
+    last_name: str
+    comment_movies: Optional[MovieModel]
+
+
+
