@@ -1,12 +1,12 @@
 from datetime import datetime
 from pydantic import BaseModel, constr
 
-from models.users import User
+from db.users import UserModel
 
 
 class Comment(BaseModel):
     id: int
-    creator: User
+    creator: UserModel
     text: str
     rating: float
     created_at: datetime
