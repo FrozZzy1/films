@@ -15,6 +15,13 @@ async def read_users(
     return await users.get_all(limit=limit, skip=skip)
 
 
+@router.get('/username')
+async def get_by_username(
+        username: str,
+        users: UserRepository = Depends(get_user_repository), ):
+    return await users.get_by_username(username=username)
+
+
 @router.post('/', response_model=User)
 async def create(
         user: UserIn,

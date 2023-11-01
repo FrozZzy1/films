@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Optional
 
 from databases.interfaces import Record
 from sqlalchemy import insert, select
@@ -14,6 +15,12 @@ class UserRepository(BaseRepository):
         query = select(UserModel).limit(limit).offset(skip)
 
         return await self.database.fetch_all(query=query)
+
+    async def get_by_username(self, username: str) -> Optional[User]:
+        query = select(UserModel).where(UserModel.username == username)
+        user = await self.database.fetch_one(query)
+
+        return user
 
     async def create(self, u: UserIn) -> User:
         created_time = datetime.utcnow()
