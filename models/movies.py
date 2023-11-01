@@ -24,16 +24,16 @@ class Movie(BaseModel):
     year: date
     country: str
     genre_id: Genre
-    actors_id: Optional[ActorModel]
+    actors_id: Optional[ActorModel] = None
     description: str
     photo: str
-    photo_gallery: Optional[str]
-    similar_movies: Optional[MovieModel]
-    rating: Optional[float]
-    rating_MPAA: Optional[RatingMPAA]
-    comment_list: Optional[CommentModel]
-    movie_submitter: Optional[UserModel]
-    receptionist: Optional[UserModel]
+    photo_gallery: Optional[str] = None
+    similar_movies: Optional[MovieModel] = None
+    rating: Optional[float] = 0
+    rating_MPAA: Optional[RatingMPAA] = None
+    comment_list: Optional[CommentModel] = None
+    movie_submitter: UserModel
+    receptionist: Optional[UserModel] = None
     created_at: datetime
     updated_at: datetime
 
