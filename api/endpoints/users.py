@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
 from api.depends.repositories import get_user_repository
-from models.users import User, UserIn
+from models.users import User, UserIn, UserOut
 from repositories.users import UserRepository
 
 router = APIRouter()
@@ -22,7 +22,7 @@ async def get_by_username(
     return await users.get_by_username(username=username)
 
 
-@router.post('/', response_model=User)
+@router.post('/signup', response_model=UserOut)
 async def create(
         user: UserIn,
         users: UserRepository = Depends(get_user_repository), ) -> User:

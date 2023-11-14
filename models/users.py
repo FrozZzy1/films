@@ -24,7 +24,7 @@ class UserIn(BaseModel):
     password1: constr(min_length=6)
     password2: str
     first_name: str
-    middle_name: Optional[str]
+    middle_name: Optional[str] = None
     last_name: str
     email: EmailStr
 
@@ -44,9 +44,6 @@ class UserIn(BaseModel):
 class UserOut(BaseModel):
     username: str
     first_name: str
-    middle_name: Optional[str]
+    middle_name: Optional[str] = None
     last_name: str
-    comment_movies: Optional[MovieModel]
-
-
-
+    email: EmailStr
