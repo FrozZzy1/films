@@ -1,12 +1,14 @@
 from fastapi import FastAPI
 
-from api.endpoints import users
+from api.endpoints import users, auth
 from db.base import database, engine, Base
 
 app = FastAPI(
     title='Films',
 )
+
 app.include_router(users.router, prefix='/users')
+app.include_router(auth.router, prefix='/auth')
 
 
 @app.on_event('startup')
